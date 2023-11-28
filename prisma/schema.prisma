@@ -1,5 +1,6 @@
 // whenever any changes in schema.prisma file please run 
 // command: npx prisma generate
+// command: npx prisma db push
 
 datasource db {
   provider     = "mysql"
@@ -13,7 +14,7 @@ generator client {
 
 model Course{
   id String @id @default(uuid())
-  userid String
+  userId String
   title String @db.Text
   description String? @db.Text
   imageUrl String? @db.Text

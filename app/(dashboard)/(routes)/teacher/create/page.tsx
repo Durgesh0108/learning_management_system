@@ -18,8 +18,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
-import toast from "react-hot-toast"
-
+import toast from "react-hot-toast";
 
 // used joi in yelp camp similarly zod is also used to create schema in typescript
 const formSchema = z.object({
@@ -44,11 +43,12 @@ const CreateCoursePage = () => {
 		console.log(values);
 
 		try {
-			const response = await axios.post("/api/course", values);
+			const response = await axios.post("/api/courses", values);
 			router.push(`/teacher/courses/${response.data.id}`);
+			toast.success("Course Created");
 		} catch (err) {
 			if (err) {
-				toast.error("Something Went Wrong")
+				toast.error("Something Went Wrong");
 			}
 		}
 	};
