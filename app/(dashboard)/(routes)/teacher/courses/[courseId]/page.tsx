@@ -39,7 +39,11 @@ const CourseIdPage = async ({ params }: { params: { courseId: String } }) => {
 				<div className="flex flex-col gap-y-2">
 					<h1 className="text-2xl font-medium">Course Setup</h1>
 				</div>
-			</div>
+            </div>
+            <div className="">
+                <div>{course.title}</div>
+                <div>{course.id}</div>
+            </div>
 		</div>
 	);
 };
