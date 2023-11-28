@@ -3,7 +3,7 @@ import { auth } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 import React from "react";
 
-const CourseIdPage = async ({ params }: { params: { courseId: String } }) => {
+const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
 	const { userId } = auth();
 
 	if (!userId) {
