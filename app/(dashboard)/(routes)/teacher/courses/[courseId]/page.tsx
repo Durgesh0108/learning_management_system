@@ -1,5 +1,7 @@
+import { IconBadge } from "@/components/icon-badeg";
 import { db } from "@/lib/db";
 import { auth } from "@clerk/nextjs";
+import { LayoutDashboard } from "lucide-react";
 import { redirect } from "next/navigation";
 import React from "react";
 
@@ -35,14 +37,21 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
 
 	return (
 		<div className="p-6">
-			<div className="flex items-center justify-center">
+			<div className="flex items-center justify-between">
 				<div className="flex flex-col gap-y-2">
 					<h1 className="text-2xl font-medium">Course Setup</h1>
+					<span className="text-sm text-slate-700">Complete All Fields {completionText}</span>
 				</div>
             </div>
-            <div className="">
-                <div>{course.title}</div>
-                <div>{course.id}</div>
+			<div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-16">
+				<div>
+					<div className="flex items-center gap-x-2">
+						<IconBadge icon={LayoutDashboard} variant={"success"}/>
+						<h2 className="text-xl font-medium">Customize Your Course</h2>
+					</div>
+				</div>
+                {/* <div>{course.title}</div>
+                <div>{course.id}</div> */}
             </div>
 		</div>
 	);

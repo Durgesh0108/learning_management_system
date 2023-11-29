@@ -4,19 +4,18 @@ import { auth } from "@clerk/nextjs";
 import Link from "next/link";
 
 const TeacherCoursesPage = async () => {
-	const allcourses = await db.course.findMany();
-	const { userId } = auth();
+	const user = auth();
 	const currentUserCourses = await db.course.findMany({
 		where: {
-			userId: userId,
+			userId: user.userId,
 		},
 	});
 
 	return (
 		<div className="flex flex-col gap-y-4">
-			<div className="flex flex-col gap-y-2">
+			<div className="">
 				{currentUserCourses.map((course) => (
-					<div key={course.id} className="">
+					<div key={course.id} className="flex flex-col gap-y-2">
 						<Link href={`/teacher/courses/${course.id}`}>
 							<Button variant={"ghost"}>{course.title}</Button>
 						</Link>
