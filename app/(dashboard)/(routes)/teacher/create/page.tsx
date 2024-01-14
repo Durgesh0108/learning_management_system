@@ -85,20 +85,6 @@ const CreateCoursePage = () => {
 										</FormDescription>
 										<FormMessage />
 									</FormItem>
-									<FormItem>
-										<FormLabel>
-											Course Description
-										</FormLabel>
-										<FormControl>
-											<Textarea placeholder="React, Next.Js,Angular and etc."
-											{...field}/>
-										</FormControl>
-										<FormDescription>
-											This is a short description of what
-											the course will be About.
-										</FormDescription>
-										<FormMessage />
-									</FormItem>
 								</>
 							)}
 						/>
