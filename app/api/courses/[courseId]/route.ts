@@ -1,6 +1,6 @@
 import { db } from "@/lib/db";
 import { auth } from "@clerk/nextjs";
-import { error } from "console";
+
 import { NextResponse } from "next/server";
 
 export async function PATCH(
@@ -28,10 +28,10 @@ export async function PATCH(
             }
         })
         // console.log(course)
-        return new NextResponse(course)
+        return NextResponse.json(course)
     }
     catch (err) {
-        console.log("[Course ID]", error)
+        console.log("[Course ID]", err)
         return new NextResponse("Internal Error", { status: 500 });
     }
 }
