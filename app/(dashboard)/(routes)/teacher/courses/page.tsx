@@ -6,12 +6,12 @@ import Link from "next/link";
 const TeacherCoursesPage = async () => {
 	const user = auth();
 	const currentUserCourses = await db.course.findMany({
-		where: {
-			userId: user.userId,
-		},
+		// where: {
+		// 	userId: user.userId,
+		// },
 	});
 
-	console.log(user.userId, currentUserCourses)
+	console.log(user.userId, currentUserCourses);
 
 	return (
 		<div className="flex flex-col gap-y-4">
