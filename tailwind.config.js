@@ -1,5 +1,7 @@
+const { withUt } = require("uploadthing/tw");
+
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+module.exports = withUt({
 	content: [
 		"./node_modules/flowbite-react/**/*.js",
 		"./app/**/*.{js,ts,jsx,tsx,mdx}",
@@ -75,4 +77,4 @@ module.exports = {
 		},
 	},
 	plugins: [require("tailwindcss-animate"), require("flowbite/plugin")],
-};
+});

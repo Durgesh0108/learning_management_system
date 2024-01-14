@@ -22,6 +22,7 @@ import { cn } from "@/lib/utils";
 import { Textarea } from "@/components/ui/textarea";
 import Link from "next/link";
 import Image from "next/image";
+import { FileUpload } from "@/components/file-upload";
 
 interface ImageFormProps {
 	initialData: Course;
@@ -81,63 +82,35 @@ export const ImageForm = ({ initialData, courseId }: ImageFormProps) => {
 					)}
 				</Button>
 			</div>
-			{
-				!isEditing &&
-					(!initialData.imageUrl ? (
-						<div className="flex items-center justify-center h-60 bg-slate-200 rounded-md">
-							<ImageIcon className="h-10 w-10 text-slate-500" />
-						</div>
-					) : (
-						<div className="relative aspect-video mt-2">
-							<Image
-								alt="Upload"
-								fill
-								className="object-cover rounded-md"
-								src={initialData.imageUrl}
-							/>
-						</div>
-					))
-				// 			<p
-				// 				className={cn(
-				// 					"text-sm mt-2",
-				// 					!initialData.imageUrl && "text-slate-500 italic"
-				// 				)}
-				// 			>
-				// 				{initialData.imageUrl || "No Image"}
-				// 			</p>
-			}
-			{isEditing && (
-				<Form {...form}>
-					<form
-						onSubmit={form.handleSubmit(onSubmit)}
-						className="space-y-4 mt-4"
-					>
-						<FormField
-							control={form.control}
-							name="imageUrl"
-							render={({ field }) => (
-								<FormItem>
-									<FormControl>
-										<Textarea
-											disabled={isSubmitting}
-											placeholder="e.g. 'This course is about...'"
-											{...field}
-										/>
-									</FormControl>
-									<FormMessage />
-								</FormItem>
-							)}
+			{!isEditing &&
+				(!initialData.imageUrl ? (
+					<div className="flex items-center justify-center h-60 bg-slate-200 rounded-md">
+						<ImageIcon className="h-10 w-10 text-slate-500" />
+					</div>
+				) : (
+					<div className="relative aspect-video mt-2">
+						<Image
+							alt="Upload"
+							fill
+							className="object-cover rounded-md"
+							src={initialData.imageUrl}
 						/>
-						<div className="flex items-center gap-x-2">
-							<Button
-								disabled={!isValid || isSubmitting}
-								type="submit"
-							>
-								Save
-							</Button>
-						</div>
-					</form>
-				</Form>
+					</div>
+				))}
+			{isEditing && (
+				<div>
+					<FileUpload
+						endpoint="courseImage"
+						onChange={(url) => {
+							if (url) {
+								onSubmit({ imageUrl: url });
+							}
+						}}
+					/>
+					<div className="text-xs text-muted-foreground mt-4">
+						16:9 aspect ratio recommended
+					</div>
+				</div>
 			)}
 		</div>
 	);
