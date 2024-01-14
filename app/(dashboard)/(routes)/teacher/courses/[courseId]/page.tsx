@@ -1,10 +1,15 @@
 import { IconBadge } from "@/components/icon-badeg";
 import { db } from "@/lib/db";
 import { auth } from "@clerk/nextjs";
-import { LayoutDashboard } from "lucide-react";
-import { redirect } from "next/navigation";
-import TitleForm  from "./_components/title-form";
+import { LayoutDashboard, Trash, icons } from "lucide-react";
+import { redirect, useRouter } from "next/navigation";
+import { TitleForm } from "./_components/title-form";
 import React from "react";
+import { toast } from "react-hot-toast";
+import { Button } from "@/components/ui/button";
+import { DescriptionForm } from "./_components/description-form";
+import Link from "next/link";
+import { ImageForm } from "./_components/image-form";
 
 const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
 	const { userId } = auth();
@@ -34,10 +39,12 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
 	const completedFields = requiredFields.filter(Boolean).length;
 
 	const completionText = `(${completedFields}/${totalFields})`;
-	// console.log(course)
 
 	return (
 		<div className="p-6">
+			<p className="text-2xl text-blue-500 font-bold mb-4">
+				<Link href="/teacher/courses/">All Courses</Link>
+			</p>
 			<div className="flex items-center justify-between">
 				<div className="flex flex-col gap-y-2">
 					<h1 className="text-2xl font-medium">Course Setup</h1>
@@ -55,10 +62,15 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
 						</h2>
 					</div>
 
-					<TitleForm
+					<TitleForm initialData={course} courseId={course.id} />
+					<DescriptionForm
 						initialData={course}
 						courseId={course.id}
-					></TitleForm>
+					/>
+					<ImageForm
+						initialData={course}
+						courseId={course.id}
+					/>
 				</div>
 			</div>
 		</div>

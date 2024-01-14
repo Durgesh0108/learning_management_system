@@ -27,3 +27,15 @@ export async function POST(req: Request) {
         return new NextResponse("Internal Error", { status: 500 })
     }
 }
+
+// export async function DELETE(req: Request) {
+//     try {
+//         const { id } = req.param.courseId;
+//         console.log(id)
+//         // const course = await db.course.delete({ where: { id } })
+//     }
+//     catch (error) {
+//         console.log("Delete Error:", error);
+
+//     }
+// }

@@ -11,6 +11,8 @@ const TeacherCoursesPage = async () => {
 		},
 	});
 
+	console.log(user.userId, currentUserCourses)
+
 	return (
 		<div className="flex flex-col gap-y-4">
 			<div className="">

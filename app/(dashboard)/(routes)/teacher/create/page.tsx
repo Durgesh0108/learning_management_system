@@ -19,6 +19,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
 import toast from "react-hot-toast";
+import { Textarea } from "@/components/ui/textarea";
 
 // used joi in yelp camp similarly zod is also used to create schema in typescript
 const formSchema = z.object({
@@ -69,20 +70,36 @@ const CreateCoursePage = () => {
 							control={form.control}
 							name="title"
 							render={({ field }) => (
-								<FormItem>
-									<FormLabel>Course Title</FormLabel>
-									<FormControl>
-										<Input
-											disabled={isSubmitting}
-											placeholder="Advanced Web"
-											{...field}
-										/>
-									</FormControl>
-									<FormDescription>
-										What will you teach in this Course?
-									</FormDescription>
-									<FormMessage />
-								</FormItem>
+								<>
+									<FormItem>
+										<FormLabel>Course Title</FormLabel>
+										<FormControl>
+											<Input
+												disabled={isSubmitting}
+												placeholder="Advanced Web"
+												{...field}
+											/>
+										</FormControl>
+										<FormDescription>
+											What will you teach in this Course?
+										</FormDescription>
+										<FormMessage />
+									</FormItem>
+									<FormItem>
+										<FormLabel>
+											Course Description
+										</FormLabel>
+										<FormControl>
+											<Textarea placeholder="React, Next.Js,Angular and etc."
+											{...field}/>
+										</FormControl>
+										<FormDescription>
+											This is a short description of what
+											the course will be About.
+										</FormDescription>
+										<FormMessage />
+									</FormItem>
+								</>
 							)}
 						/>
 						<div className="flex items-center gap-x-2">
